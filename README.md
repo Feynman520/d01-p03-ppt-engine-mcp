@@ -19,8 +19,8 @@ A local MCP server that drives the **real PowerPoint desktop application** (COM 
 ## Install
 
 ```powershell
-git clone https://github.com/Feynman520/ppt-engine-mcp.git
-cd ppt-engine-mcp
+git clone https://github.com/Feynman520/d01-p03-ppt-engine-mcp.git
+cd d01-p03-ppt-engine-mcp
 py -3.12 -m venv .venv          # or: python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```

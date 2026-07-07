@@ -17,8 +17,8 @@ PowerPoint.Application 데스크톱을 COM으로 자동화해, **라이브러리
 ## 설치
 
 ```powershell
-git clone https://github.com/Feynman520/ppt-engine-mcp.git
-cd ppt-engine-mcp
+git clone https://github.com/Feynman520/d01-p03-ppt-engine-mcp.git
+cd d01-p03-ppt-engine-mcp
 py -3.12 -m venv .venv          # 또는: python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
