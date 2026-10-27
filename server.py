@@ -22,8 +22,15 @@ from typing import Any, Optional
 import anyio
 from mcp.server.fastmcp import FastMCP
 
-from engine import presentation
-from engine.session import PowerPointSession
+import sys
+
+if sys.platform == "win32":
+    from engine import presentation
+    from engine.session import PowerPointSession
+else:
+    # macOS: PowerPoint COM 이 없다 — 같은 도구를 LibreOffice(무료) Impress 렌더 엔진으로 처리한다(engine/lo_bridge.py).
+    from engine import lo_presentation as presentation
+    from engine.lo_bridge import LoSession as PowerPointSession
 
 # ---- 단일 세션 관리(지연 초기화) -------------------------------------------
 _session: Optional[PowerPointSession] = None
@@ -63,6 +70,8 @@ mcp = FastMCP(
         "PowerPoint.Application COM 엔진 자동화. 라이브러리(python-pptx)가 못 하는 "
         "렌더링/변환 전용. ppt_export_pdf로 PDF 출력, ppt_export_images로 각 슬라이드를 "
         "이미지로 렌더링한다. 경로는 절대경로 권장. 원본은 보존되며 결과는 out_path/out_dir로 저장된다."
+        + ("" if sys.platform == "win32" else
+           " (macOS: PowerPoint 대신 LibreOffice Impress 엔진으로 렌더링한다.)")
     ),
 )
 
