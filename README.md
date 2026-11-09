@@ -16,6 +16,18 @@ A local MCP server that drives the **real PowerPoint desktop application** (COM 
 - Python 3.10+ — verified on **3.12**
 - [Claude Code](https://claude.com/claude-code) or any MCP client
 
+## macOS (LibreOffice engine)
+
+On macOS there is no COM, so the same four tools run on **LibreOffice** (free, MPL-2.0) in headless mode:
+`server.py` picks `engine/lo_presentation.py` + `engine/lo_bridge.py` instead of the COM session.
+
+- Install LibreOffice (`brew install --cask libreoffice`, or from libreoffice.org). `IRIS_SOFFICE` may point at another `soffice`.
+- Each call starts `soffice` once with a private profile (`.lo-profile/`, or `IRIS_LO_PROFILE_DIR`) and runs a UNO macro
+  (`engine/lo_macro/iris_uno.py`) inside it. The bridge hands headless LibreOffice the macOS system fonts (Korean included)
+  through a generated `fonts.conf`.
+- Rendering is LibreOffice Impress's: PowerPoint-only effects are drawn as far as LibreOffice reads them.
+- Check: `python tests/lo_engine.py`.
+
 ## Install
 
 ```powershell
