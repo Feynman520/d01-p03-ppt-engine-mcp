@@ -79,3 +79,7 @@ Originals are never modified; results are always written to `out_path`/`out_dir`
 ## License
 
 [MIT](LICENSE)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute and [SECURITY.md](SECURITY.md) for reporting security issues.
